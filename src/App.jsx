@@ -3,9 +3,9 @@ import "./style.css";
 const moves = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
 const App = () => {
-  const [computerMove, setComputerMove] = useState("You have to choose first");
-  const [outcome, setOutcome] = useState("play");
-  const [desc, setDesc] = useState("play and see...");
+  const [computerMove, setComputerMove] = useState("");
+  const [outcome, setOutcome] = useState("Good luck");
+  const [desc, setDesc] = useState("Play and see...");
   const [wins, setWins] = useState(0);
   const [draws, setDraws] = useState(0);
   const [losses, setLosses] = useState(0);
@@ -136,7 +136,42 @@ const App = () => {
     setWins(0);
     setDraws(0);
     setLosses(0);
+    setComputerMove("");
+    setOutcome("play");
+    setDesc("play again...");
   };
+
+  let compMoveClass = "computer-move";
+
+  if (computerMove === "Rock") {
+    compMoveClass += " class-rock";
+  } else if (computerMove === "Paper") {
+    compMoveClass += " class-paper";
+  } else if (computerMove === "Scissors") {
+    compMoveClass += " class-scissors";
+  } else if (computerMove === "Lizard") {
+    compMoveClass += " class-lizard";
+  } else if (computerMove === "Spock") {
+    compMoveClass += " class-spock";
+  }
+
+  let outcomeClass = "outcome";
+
+  if (outcome === "Win") {
+    outcomeClass += " class-win";
+  } else if (outcome === "Draw") {
+    outcomeClass += " class-draw";
+  } else if (outcome === "Loss") {
+    outcomeClass += " class-loss";
+  }
+
+  const hover = (move) => {
+    let hoverClass = 
+
+    console.log(move)
+
+
+  }
 
   return (
     <>
@@ -161,19 +196,21 @@ const App = () => {
                 onClick={() => {
                   playFunction(move);
                 }}
-              >
-                
-              </button>
+                onMouseEnter={()=>hover(move)}
+              ></button>
             ))}
-            <p className="computer-move">{computerMove}</p>
-            <p className="description">{desc}</p>
-            <p className="outcome">{outcome}</p>
+            <p className="comp-move">The Computers move:</p>
+            <p className={compMoveClass}></p>
+            <p className="description">"{desc}"</p>
+            <p className={outcomeClass}>{outcome}</p>
             <div className="result">
-              Wins: {wins} - Draws: {draws} - Losses: {losses}
+              Wins: <span className="span">{wins}</span> 
+              Draws: <span className="span">{draws}</span>
+              Losses: <span className="span">{losses}</span>
             </div>
 
             <button className="reset-button" onClick={reset}>
-              Reset Score
+              
             </button>
           </div>
         </div>
