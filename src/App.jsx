@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import "./style.css";
 const moves = ["Rock", "Paper", "Scissors", "Lizard", "Spock"];
 
 const App = () => {
@@ -139,27 +140,44 @@ const App = () => {
 
   return (
     <>
-      <h1>The Sheldon Cooper's Game</h1>
-      <h2>Choose your move carefully</h2>
+      <main>
+        <div className="container">
+          <div className="headline-container">
+            <h1>The Sheldon Cooper's Game</h1>
+            <img
+              src="https://www.iconbolt.com/iconsets/coreui-brand/atom.svg"
+              alt="atom-icon"
+            />
+          </div>
 
-      {moves.map((move, index) => (
-        <button
-          key={index}
-          onClick={() => {
-            playFunction(move);
-          }}
-        >
-          {move}
-        </button>
-      ))}
-      <p>{computerMove}</p>
-      <p>{desc}</p>
-      <p>{outcome}</p>
-      <div className="result">
-        Wins: {wins} - Draws: {draws} - Losses: {losses}
-      </div>
+          <div className="game-container">
+            <h2>Choose your move carefully</h2>
 
-      <button onClick={reset}>Reset Score</button>
+            {moves.map((move, index) => (
+              <button
+                className="option-button"
+                id={move}
+                key={index}
+                onClick={() => {
+                  playFunction(move);
+                }}
+              >
+                
+              </button>
+            ))}
+            <p className="computer-move">{computerMove}</p>
+            <p className="description">{desc}</p>
+            <p className="outcome">{outcome}</p>
+            <div className="result">
+              Wins: {wins} - Draws: {draws} - Losses: {losses}
+            </div>
+
+            <button className="reset-button" onClick={reset}>
+              Reset Score
+            </button>
+          </div>
+        </div>
+      </main>
     </>
   );
 };
